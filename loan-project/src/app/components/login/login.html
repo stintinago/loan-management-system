@@ -1,0 +1,22 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2 class="title">Iniciar sesión</h2>
+    <p class="subtitle">Ingrese sus credenciales para acceder</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="Email">
+      </div>
+
+      <div class="input-group">
+        <label>Contraseña</label>
+        <input type="password" formControlName="password" placeholder="Contraseña">
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn-black">Ingresar</button>
+      </div>
+    </form>
+  </div>
+</div>

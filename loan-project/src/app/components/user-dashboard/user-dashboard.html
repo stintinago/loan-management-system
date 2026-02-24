@@ -1,0 +1,54 @@
+<div class="dashboard-container">
+  <header class="header">
+    <h1>Bienvenido, <span class="user-name">{{ user?.email }}</span></h1>
+    <button class="btn-logout" (click)="logout()">Cerrar Sesión</button>
+  </header>
+
+  <div class="main-grid">
+    <section class="card">
+      <h3>Solicitar nuevo préstamo</h3>
+      <div class="form-group">
+        <label>Monto</label>
+        <input type="number" [(ngModel)]="amount" placeholder="Ej: 5000">
+      </div>
+      <div class="form-group">
+        <label>Plazo (meses)</label>
+        <select [(ngModel)]="term">
+          <option [value]="12">12 meses</option>
+          <option [value]="24">24 meses</option>
+          <option [value]="36">36 meses</option>
+        </select>
+      </div>
+      <button class="btn-black" (click)="sendRequest()">Solicitar Préstamo</button>
+    </section>
+
+    <section class="card table-card">
+      <h3>Mis Préstamos</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Monto</th>
+            <th>Plazo</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let loan of loans">
+            <td>#{{ loan.id }}</td>
+            <td>{{ loan.amount | currency }}</td>
+            <td>{{ loan.term }} meses</td>
+            <td>
+              <span class="badge" [ngClass]="loan.status.toLowerCase()">
+                {{ loan.status }}
+              </span>
+            </td>
+          </tr>
+          <tr *ngIf="loans.length === 0">
+            <td colspan="4" class="empty-msg">No tienes préstamos solicitados aún.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
